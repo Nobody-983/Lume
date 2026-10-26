@@ -8,13 +8,17 @@ export class ApiClientError extends Error {
   }
 }
 
+const API_BASE_URL = (
+  import.meta.env.VITE_API_BASE_URL || 'https://lume-i8nj.onrender.com'
+).replace(/\/$/, '');
+
 async function request(path, options = {}) {
   let response;
   try {
-    response = await fetch(path, options);
+    response = await fetch(`${API_BASE_URL}${path}`, options);
   } catch {
     throw new ApiClientError(
-      'Lumé’s local service is not reachable. Make sure both the API and web servers are running.',
+      'Lumé’s service is not reachable. Please try again.',
       { code: 'NETWORK_ERROR' },
     );
   }

@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Lumé — an editorial skin, style, and try-on companion powered by Perfect Corp YouCam APIs.",
+  "description": "Lum\u00e9 \u2014 an editorial skin, style, and try-on companion powered by Perfect Corp YouCam APIs.",
   "workspaces": [
     "client",
     "server"
   ],
   "scripts": {
-    "dev": "concurrently -n API,WEB -c magenta,cyan \"npm run dev -w server\" \"npm run dev -w client\"",
+    "dev": "node api.js && concurrently -n API,WEB -c magenta,cyan \"npm run dev -w server\" \"npm run dev -w client\"",
     "dev:client": "npm run dev -w client",
     "dev:server": "npm run dev -w server",
-   "build": "npm run build -w client && mkdir -p dist && cp -r client/dist/. dist/",
-    "start": "npm run start -w server",
+    "build": "node api.js && npm run build -w client && mkdir -p dist && cp -r client/dist/. dist/",
+    "start": "node api.js && npm run start -w server",
     "preview": "npm run preview -w client",
     "test": "npm run test -w server",
     "lint": "eslint client/src server/src server/test --max-warnings=0"
